@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> On Call </title>
+  
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Heebo' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Coda' rel='stylesheet'>
+
+    <!-- Bootstrap icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.css">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+
+  </head>
+  <body>
+
+      <div class="jumbotron text-center" style="background-color: rgb(12, 143, 0); color: white;">
+          <h1 style="text-shadow: 2px 2px black; font-family: Heebo;"><strong>Whose On-Call?</strong></h1>
+      </div>
+
+      <div id="app">
+        <div class="container">
+       
+          <div class="col-md-auto">
+            <div class="form-check form-check-inline">
+                <strong> Select Date </strong>
+                <input class="form-control" type="date" v-model="selectedDate">
+
+                </br>
+                <button class="btn btn-success" v-on:click="updateOnCallPerson"> Check </button>
+              </div>
+          
+              </br></br>
+              <span class="text text-muted"> Selected Date </span>
+              </br>
+              <span class="text text-muted"> {{ selectedDate }} </span>
+              </br></br></br>
+              
+              <div v-for="team in teams">
+
+                <span class = "text text-muted"> 
+                    <i v-bind:class="team.teamIcon"></i>
+                    &nbsp;
+                    {{ team.teamName }} 
+                </span>
+                </br>
+                <span style="font-size: 1.8rem; color: green;">
+                  {{ team.onCallPerson[0] }} 
+                </span>
+                &nbsp;
+                <span v-if="team.onCallPerson.length == 2" class = "text text-muted"> 
+                  | {{ team.onCallPerson[1] }}
+                </span>  
+                
+                <span v-if="team.oooPerson.length > 0" class = "text text-muted"> 
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    <i class="bi bi-umbrella" title="OOO"></i> {{ team.oooPerson[0] }} | {{ team.oooPerson[1] }}
+                  </span>
+                
+
+                <hr>
+              </div>
+          </div>
+
+        </div>
+      </div>
+
+      <script src="https://unpkg.com/vue@next"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.js"></script>
+      <script src="app.js"></script>
+      
+  </body>
+</html>
+
