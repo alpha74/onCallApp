@@ -19,7 +19,7 @@ Vue.createApp({
                             numOnCall: 1,
                             onCallPerson: [],
                             oooPerson: [],
-                            people: ["Gry", "Mohan", "Anime"]
+                            people: ["Gary", "Mohan", "Anime"]
                         },
                         {
                             teamName: "Storage",
