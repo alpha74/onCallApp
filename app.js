@@ -67,16 +67,16 @@ Vue.createApp({
                     else
                         tempTeams[ team ].onCallPerson= [ tempTeams[ team ].people[ firstOnCall ] ]
                     
-                    // OOO set for Sherlocl
+                    // OOO set for Sherlock
                     if( team == 0 )
                     {
                         var leaveIndexFirst = (firstOnCall +1) % peopleLen
                         var leaveIndexSecond = 0
 
-                        if( leaveIndexFirst * 2 < peopleLen )
-                            leaveIndexSecond = parseInt(leaveIndexFirst * 2 )
+                        if( leaveIndexFirst + (peopleLen/2) < peopleLen )
+                            leaveIndexSecond = parseInt(leaveIndexFirst + peopleLen/2 )
                         else
-                            leaveIndexSecond = parseInt(leaveIndexFirst / 2) 
+                            leaveIndexSecond = parseInt(leaveIndexFirst - peopleLen/2) 
                         
                         tempTeams[ team ].oooPerson = [ tempTeams[ team ].people[ leaveIndexFirst ], tempTeams[ team ].people[ leaveIndexSecond ] ]
                     }
