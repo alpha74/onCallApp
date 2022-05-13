@@ -51,15 +51,12 @@ Vue.createApp({
                 //currDate = new Date( parseInt(selectedDateStr[0]), parseInt(selectedDateStr[1]) , parseInt(selectedDateStr[2]) )
 
                 currDate = new Date( moment(this.selectedDate).format("yyyy-MM-DD"))
-
-                const diffTime = Math.abs(currDate - this.initialDate)
-                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
-
+                
                 for( team in tempTeams)
                 {
                     var peopleLen = tempTeams[ team ].people.length
                     
-                    var firstOnCall = diffDays % peopleLen
+                    var firstOnCall = moment(currDate).week() % peopleLen
                     var secondOnCall = (firstOnCall + ( peopleLen / 2 )) % peopleLen
 
                     if( tempTeams[ team ].numOnCall == 2 )
