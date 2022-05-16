@@ -46,17 +46,20 @@ Vue.createApp({
             if( this.selectedDate )
             {
                 let tempTeams = this.teams
-
-                //selectedDateStr = this.selectedDate.split('-')
-                //currDate = new Date( parseInt(selectedDateStr[0]), parseInt(selectedDateStr[1]) , parseInt(selectedDateStr[2]) )
-
-                currDate = new Date( moment(this.selectedDate).format("yyyy-MM-DD"))
                 
+                currDate = new Date( moment(this.selectedDate).format("yyyy-MM-DD"))
+                var dayIndex = moment(currDate).day()
+
                 for( team in tempTeams)
                 {
                     var peopleLen = tempTeams[ team ].people.length
                     
                     var firstOnCall = moment(currDate).week() % peopleLen
+
+                    // If day is Sun, use previous week number
+                    if( dayIndex == 0 )
+                        firstOnCall = firstOnCall - 1
+
                     var secondOnCall = (firstOnCall + ( peopleLen / 2 )) % peopleLen
 
                     if( tempTeams[ team ].numOnCall == 2 )
