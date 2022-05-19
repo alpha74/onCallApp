@@ -59,6 +59,9 @@ Vue.createApp({
                     // If day is Sun, use previous week number
                     if( dayIndex == 0 )
                         firstOnCall = firstOnCall - 1
+                    
+                    if( firstOnCall < 0 )
+                        firstOnCall = peopleLen - firstOnCall-1
 
                     var secondOnCall = (firstOnCall + ( peopleLen / 2 )) % peopleLen
 
